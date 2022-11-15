@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <title>{%block title%} {%endblock%}</title>
+    
+
+    <link href="{{ url_for('static', filename='CSS/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='CSS/fontawesome.css') }}"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/templatemo-grad-school.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/lightbox.css') }}">
+<!--
+    
+TemplateMo 557 Grad School
+
+https://templatemo.com/tm-557-grad-school
+
+-->
+  </head>
+
+<body>
+
+    {%block contenido%} {%endblock%}
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+
+  <script src="{{ url_for('static', filename='JS/modoalex.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='JS/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/bootstrap.bundle.min.js') }}"></script> -->
+    <!-- <script src="{{ url_for('static', filename='JS/isotope.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/owl-carousel.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/lightbox.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/tabs.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/video.js') }}"></script>
+    <script src="{{ url_for('static', filename='JS/slick-slider.js') }}"></script> -->
+    <!-- <script src="{{ url_for('static', filename='JS/custom.js') }}"></script> -->
+
+</body>
+</html>
