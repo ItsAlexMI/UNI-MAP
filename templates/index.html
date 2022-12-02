@@ -1,153 +1,108 @@
-<html lang="es">
-<head>
-    <title>Simple Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='CSS/style.css') }}" />
-    <script src="{{ url_for('static', filename='JS/maps.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/templatemo-grad-school.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/owl.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/lightbox.css') }}">
-</head>
-
-<body>
-  <section class="background-radial-gradient overflow-hidden">
-    <style>
-      .background-radial-gradient {
-        height: 100%;
-        background-color: hsl(218, 41%, 15%);
-        background-image: radial-gradient(650px circle at 0% 0%,
-            hsl(218, 41%, 35%) 15%,
-            hsl(218, 41%, 30%) 35%,
-            hsl(218, 41%, 20%) 75%,
-            hsl(218, 41%, 19%) 80%,
-            transparent 100%),
-          radial-gradient(1250px circle at 100% 100%,
-            hsl(218, 41%, 45%) 15%,
-            hsl(218, 41%, 30%) 35%,
-            hsl(218, 41%, 20%) 75%,
-            hsl(218, 41%, 19%) 80%,
-            transparent 100%);
-      }
+{% extends 'layout.html'%} {% block title %} Inicio {% endblock %} {% block
+  content %}
   
-      #radius-shape-1 {
-        height: 220px;
-        width: 220px;
-        top: -60px;
-        left: -130px;
-        background: radial-gradient(#44006b, #ad1fff);
-        overflow: hidden;
-      }
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="text-container mt-5">
+            <h1>UNI Maps</h1>
+            <p class="p-large p-heading">
+              este mapa ayuda a los estudiantes de nuevo ingreso a orientarse
+              correctamente con las ubicaciones de los edificio e instalaciones de
+              la Universidad Nacional Politécnica De Nicaragua...
+            </p>
+            <!-- <a class="btn-solid-lg" href="#your-link"><i class="fab fa-apple"></i>DOWNLOAD</a> -->
+            <a
+              class="btn-solid-lg"
+              href="{{ url_for('static', filename='images/UNPMaps.apk')}}"
+              ><i class="fab fa-google-play"></i>Descargar</a
+            >
+          </div>
+          <!-- end of text-container -->
+        </div>
+        <!-- end of col -->
+      </div>
+      <!-- end of row -->
+      <!-- imagen -->
   
-      #radius-shape-2 {
-        border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
-        bottom: -60px;
-        right: -110px;
-        width: 300px;
-        height: 300px;
-        background: radial-gradient(#44006b, #ad1fff);
-        overflow: hidden;
-      }
-  
-      .bg-glass {
-        background-color: hsla(0, 0%, 100%, 0.9) !important;
-        backdrop-filter: saturate(200%) blur(25px);
-      }
-    </style>
-    <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-      <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-      <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+      <!-- <div class="row">
+                  <div class="col-lg-12">
+                      <div class="image-container">
+                          <img class="img-fluid" src="images/header-iphone.png" alt="alternative">
+                      </div> 
+                  </div> 
+              </div> -->
     </div>
-      <!--header-->
-  <header class="main-header clearfix" role="header">
-    <div class="logo">
-      <a href="#">UNI<em>MAPS</em></a>
+    <!-- end of container -->
+    <div class="deco-white-circle-1">
+      <img
+        src="{{ url_for('static', filename='images/decorative-white-circle.svg')}}"
+        alt="alternative"
+      />
     </div>
-    <a href="#menu" class="menu-link"><i class="fa fa-bars"></i></a>
-    <nav id="menu" class="main-nav" role="navigation">
-      <ul class="main-menu">
-        <li><a href="#section4">Descargar para movil</a></li>
-        <!-- <li><a href="#section5">Video</a></li> -->
-        <li><a href="#section6">Sobre nosotros</a></li>
-        <li><a href="/logout" class="external">Cerrar sesion</a></li>
-
-      </ul>
-    </nav>
+    <!-- end of deco-white-circle-1 -->
+    <div class="deco-white-circle-2">
+      <img
+        src="{{ url_for('static', filename='images/decorative-white-circle.svg')}}"
+        alt="alternative"
+      />
+    </div>
+    <!-- end of deco-white-circle-2 -->
+    <div class="deco-blue-circle">
+      <img
+        src="{{ url_for('static', filename='images/decorative-blue-circle.svg')}}"
+        alt="alternative"
+      />
+    </div>
+    <!-- end of deco-blue-circle -->
+    <div class="deco-yellow-circle">
+      <img
+        src="{{ url_for('static', filename='images/decorative-yellow-circle.svg')}}"
+        alt="alternative"
+      />
+    </div>
+    <!-- end of deco-yellow-circle -->
+    <div class="deco-green-diamond">
+      <img
+        src="{{ url_for('static', filename='images/decorative-green-diamond.svg')}}"
+        alt="alternative"
+      />
+    </div>
+    <!-- end of deco-yellow-circle -->
   </header>
-
-    <!-- ***** Main Banner Area Start ***** -->
-
-    <!-- ***** Main Banner Area End ***** -->
-
-
-    
-    <div style="margin-top:100;" class="container" id="fondo">
-        <div class="rows">
-            <div class="col-6 align-self-start">
-                <script src=""></script>
-                <img style="justify-content: flex-start;" alt="UNI" src="{{ url_for('static', filename='Imagenes/UNI-Nicaragua-1.png') }}" width="200" height="100">
-            </div>
-            <div class="col-12 align-self-rigth">
-                <span style="justify-content: flex-end;"  id="CS50"><img alt="CS50" src="{{ url_for('static', filename='Imagenes/54ed73de-e3bb-4069-8c32-f414b8444161-removebg-preview.png') }}" width="200" height="70">
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12">
-                <h1>𝔹𝕚𝕖𝕟𝕧𝕖𝕟𝕚𝕕𝕠 𝕒 𝕌ℕ𝕀 𝕄𝔸ℙ𝕊...</h1>
-                <li>𝑰𝒏𝒕𝒆𝒓𝒂𝒄𝒕𝒖𝒂 𝒄𝒐𝒏 𝒆𝒍 𝒎𝒂𝒑𝒂 𝒑𝒂𝒓𝒂 𝒗𝒆𝒓 𝒕𝒐𝒅𝒐𝒔 𝒍𝒐𝒔 𝒑𝒖𝒏𝒕𝒐𝒔 𝒅𝒆 𝒊𝒏𝒕𝒆𝒓𝒆𝒔 𝒅𝒆 𝒍𝒂 𝑼𝑵𝑰 𝑹𝑼𝑺𝑩.</li>
-                <li>¿𝑻𝒊𝒆𝒏𝒆𝒔 𝒉𝒂𝒎𝒃𝒓𝒆? ¿𝑵𝒐 𝒄𝒐𝒏𝒐𝒄𝒆 𝒍𝒐𝒔 𝒌𝒊𝒐𝒔𝒄𝒐𝒔 𝒅𝒆 𝒍𝒂 𝑼𝑵𝑰? ¿𝑻𝒆 𝒅𝒂 𝒑𝒆𝒏𝒂 𝒑𝒓𝒆𝒈𝒖𝒏𝒕𝒂𝒓 𝒑𝒐𝒓 𝒆𝒍 𝒑𝒓𝒆𝒄𝒊𝒐 𝒅𝒆 𝒂𝒍𝒈𝒐?
-                    <br> 𝑵𝒐 𝒕𝒆 𝒑𝒓𝒆𝒐𝒄𝒖𝒑𝒆𝒔, 𝒃𝒖𝒔𝒄𝒂 𝒆𝒍 𝒌𝒊𝒐𝒔𝒌𝒐 𝒒𝒖𝒆 𝒒𝒖𝒊𝒆𝒓𝒂𝒔 𝒆𝒏 𝒆𝒍 𝒎𝒂𝒑𝒂, 𝒎𝒊𝒓𝒂 𝒍𝒂𝒔 𝒇𝒐𝒕𝒐𝒔 𝒅𝒆𝒍 𝒍𝒖𝒈𝒂𝒓 𝒑𝒂𝒓𝒂 𝒒𝒖𝒆 𝒗𝒆𝒂𝒔
-                    𝒔𝒊 𝒕𝒆 𝒈𝒖𝒔𝒕𝒂, 𝒅𝒆𝒋𝒂 𝒕𝒖 𝒄𝒐𝒎𝒆𝒏𝒕𝒂𝒓𝒊𝒐 (𝒐𝒑𝒊𝒏𝒊𝒐𝒏) 𝒚 𝒅𝒆𝒋𝒂𝒍𝒆 𝒕𝒖 𝒑𝒖𝒏𝒕𝒖𝒂𝒄𝒊𝒐𝒏 𝒂𝒍 𝒌𝒊𝒐𝒔𝒌𝒐.
-                </li>
-                <li>𝑴𝒊𝒓𝒂 𝒆𝒍 𝒎𝒆𝒏𝒖 𝒅𝒆 𝒕𝒖 𝒌𝒊𝒐𝒔𝒌𝒐 𝒇𝒂𝒗𝒐𝒓𝒊𝒕𝒐.</li>
-                <li>¿𝑸𝒖𝒊𝒆𝒓𝒆𝒔 𝒄𝒐𝒎𝒑𝒓𝒂𝒓 𝒂𝒍𝒈𝒐 𝒑𝒆𝒓𝒐 𝒏𝒐 𝒕𝒆 𝒅𝒆𝒄𝒊𝒅𝒆𝒔 𝒅𝒐𝒏𝒅𝒆? 𝑪𝒐𝒎𝒖𝒏𝒊𝒄𝒂𝒕𝒆 𝒆𝒏 𝒕𝒊𝒆𝒎𝒑𝒐 𝒓𝒆𝒂𝒍 𝒄𝒐𝒏 𝒆𝒍 𝒄𝒉𝒂𝒕 𝒈𝒍𝒐𝒃𝒍𝒂𝒍 𝒚 𝒖𝒏𝒐
-                  𝒅𝒆 𝒍𝒐𝒔 𝒌𝒊𝒐𝒔𝒌𝒐𝒔 𝒕𝒆 𝒄𝒐𝒏𝒕𝒆𝒔𝒕𝒂𝒓𝒂.</li>
-
-            </div>
-            <div class="col-lg-6 col-sm-6">
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div id="map"></div>
-        <p>PROGRAMADO POR: Alex Martinez y Engel Peña</p>
-    </div>
-
-    <section class="section contact" data-section="section6">
-        <div class="container">
-          <!-- <div class="row">
-            <div class="col-md-12">
-              <div class="section-heading">
-                <h2>Let’s Keep In Touch</h2>
-              </div>
-            </div>
-        </div> -->
-
-            <!-- <div class="row">
-                <div class="col-lg-12">
-                    <div id="map"></div>
-                  </div>
-            </div> -->
-          
-        </div>
-     
-      </section>
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5J5DkU8qc2YKHEOBGARcs8DqMSpJHplA&callback=initMap&v=weekly"
-    defer></script>
-    <script src="{{ url_for('static', filename='JS/modoalex.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
-    <script src="{{ url_for('static', filename='JS/bootstrap.min.js') }}"></script>
+  <!-- end of header -->
+  <!-- end of header -->
   
-
-</body>
-</section>
-</html>
+  <div class="container-fluid">
+    <div class="dropdown buttoninmap">
+      <a
+        class="btn btnmap dropdown-toggle"
+        href="#"
+        role="button"
+        data-toggle="dropdown"
+        aria-expanded="false"
+      >
+        Filtrar
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" id="todos">Todos</a>
+        <a class="dropdown-item" id="edificio">Edificios</a>
+        <a class="dropdown-item" id="cafetines">Cafetines</a>
+        <a class="dropdown-item" id="administrativo">Administrativo</a>
+      </div>
+    </div>
+    <!-- <input class="buttoninmap" id="hide-markers" type="button" value="Ocultar marcador" /> -->
+    <div id="map" style="height: 800px"></div>
+  </div>
+  
+  <!-- script maps -->
+  <script src="{{ url_for('static', filename='js/maps.js')}}"></script>
+  <!-- AIzaSyCQpZ-cabD1OMl-i9i1HUghROp7c0pP82c&map_ids=663481e2c353fdbc -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5J5DkU8qc2YKHEOBGARcs8DqMSpJHplA&callback=initMap&v=weekly"
+    defer
+  ></script>
+  
+  {% endblock %}
