@@ -25,7 +25,7 @@ function getCustomPanorama(pano) {
     return {
       location: {
         pano: "reception",
-        description: sitio,
+        description: "Hola mundo",
       },
       links: [],
 

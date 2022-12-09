@@ -4,12 +4,15 @@ from tempfile import mkdtemp
 from cs50 import SQL
 from werkzeug.security import check_password_hash, generate_password_hash
 from helpers import login_required
+from flask_socketio import SocketIO, emit, join_room, leave_room
 app = Flask(__name__)
 # Configure session to use filesystem
 app.config["SESSION_FILE_DIR"] = mkdtemp()
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 db = SQL("sqlite:///basedato.db")
+# Instancia de SocketIo
+socketio = SocketIO(app, cors_allowed_origins='*')
 
 
 @app.route("/")
@@ -18,10 +21,12 @@ def index():
 
     return render_template('index.html')
 
+
 @app.route("/prueba")
 def prueba():
 
     return render_template('index2.html')
+
 
 @app.route("/prueba2")
 def prueba2():
@@ -88,7 +93,45 @@ def login():
         return redirect("/")
     return render_template('login.html')
 
+
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect("/")
+
+
+@app.route('/chat', methods=["GET", "POST"])
+@login_required
+def chat():
+
+    us = db.execute(
+        "SELECT * FROM users WHERE id = :id", id=session["user_id"])
+
+    username = us[0]['user']
+
+    return render_template("chat.html", username=username)
+
+
+@ socketio.on('saludar')
+def saludar(mensaje, user, fecha):
+
+    print("fecha: ", fecha)
+
+    data = {"message": mensaje, "username": user, "fecha": fecha}
+    # Emitir a todos con el argumento broadcast
+    emit('general', data,
+         broadcast=True, include_self=False)
+
+    # Enviar respuesta de evento emit al cliente
+    return (f'{mensaje}')
+
+
+@app.route("/sitio/<id>", methods=["GET", "POST"])
+@login_required
+def sitio(id):
+
+    iduser = session["user_id"]
+    print("iduser: ", iduser)
+    sitio = db.execute("SELECT * FROM sitios WHERE id=:id", id=id)
+    print(sitio)
+    return render_template("sitios.html", sitio=sitio, id=id)
