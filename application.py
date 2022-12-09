@@ -191,3 +191,26 @@ def datos_usuarios(iduser):
         datosusuarios = None
 
     return render_template("datosusuarios.html", datosusuarios=datosusuarios)
+@app.route("/eliminar_comentario/<idcomentario>/<idsitio>", methods=["GET", "POST"])
+def eliminar(idcomentario, idsitio):
+
+    db.execute("DELETE FROM comentarios WHERE id =:idcomentario",
+               idcomentario=idcomentario)
+
+    flash("Comentario eliminado Correctamente!", 'exito')
+    return redirect(f"/sitio/{idsitio}")
+
+
+@app.route("/actualizar_comentario/<idsitio>/<idcomentario>", methods=["GET", "POST"])
+def actualizar(idsitio, idcomentario):
+
+    if request.method == "POST":
+
+        id = request.form.get("idcomentario")
+        comentario = request.form.get("comentario")
+        print("comentario:", comentario)
+
+        db.execute(
+            "UPDATE comentarios SET comentario = :comentario where id = :id", comentario=comentario, id=id)
+
+    return redirect(f"/sitio/{idsitio}")
