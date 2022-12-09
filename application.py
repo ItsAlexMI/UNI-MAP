@@ -1,3 +1,4 @@
+import datetime
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
@@ -13,7 +14,7 @@ Session(app)
 db = SQL("sqlite:///basedato.db")
 # Instancia de SocketIo
 socketio = SocketIO(app, cors_allowed_origins='*')
-
+x = datetime.datetime.now()
 
 @app.route("/")
 @login_required
@@ -132,6 +133,61 @@ def sitio(id):
 
     iduser = session["user_id"]
     print("iduser: ", iduser)
+
+    if request.method == "POST":
+
+        comentario = request.form.get('comentario')
+
+        fecha = x.strftime("%I") + ':' + x.strftime("%M") + \
+            " " + x.strftime("%A")
+
+        iduser = db.execute(f"SELECT id from users where id=:id_user",
+                            id_user=session["user_id"])[0]["id"]
+
+        db.execute(
+            "INSERT INTO comentarios (comentario, fecha, iduser, idsitio) VALUES (:comentario, :fecha, :iduser, :idsitio)", comentario=comentario, fecha=fecha, iduser=iduser, idsitio=id)
+
     sitio = db.execute("SELECT * FROM sitios WHERE id=:id", id=id)
-    print(sitio)
-    return render_template("sitios.html", sitio=sitio, id=id)
+
+    comentarios = db.execute(
+        "SELECT comentarios.iduser, datospersonales.imagen,comentarios.comentario, comentarios.fecha, users.user, comentarios.id, users.id as idusers FROM comentarios INNER JOIN users ON comentarios.iduser = users.id LEFT JOIN datospersonales on datospersonales.iduser = comentarios.iduser WHERE idsitio=:id", id=id)
+
+    print("comentarios: ", comentarios)
+
+    return render_template("sitios.html", sitio=sitio, id=id, comentarios=comentarios, iduser=iduser)
+
+
+@app.route("/datos", methods=["GET", "POST"])
+@login_required
+def datos():
+
+    iduser = session["user_id"]
+
+    if request.method == "POST":
+        nombre = request.form.get('nombre')
+        apellido = request.form.get('apellido')
+        carrera = request.form.get('carrera')
+        correo = request.form.get('correo')
+        url = request.form.get('url')
+
+        db.execute(
+            "INSERT INTO datospersonales (nombre, apellido, correo, imagen, carrera, iduser) VALUES (:nombre, :apellido, :correo, :imagen, :carrera, :iduser)", nombre=nombre, apellido=apellido, correo=correo, imagen=url, carrera=carrera, iduser=iduser)
+
+    datosp = db.execute(
+        "SELECT datospersonales.nombre, datospersonales.apellido, datospersonales.correo, datospersonales.imagen, carreras.carrera FROM datospersonales INNER JOIN carreras ON carreras.id = datospersonales.carrera WHERE iduser=:iduser", iduser=iduser)
+
+    if len(datosp) == 0:
+        datosp = None
+
+    return render_template("datospersonales.html", datosp=datosp)
+@app.route("/datos/<iduser>", methods=["GET", "POST"])
+@login_required
+def datos_usuarios(iduser):
+
+    datosusuarios = db.execute(
+        "SELECT datospersonales.nombre, datospersonales.apellido, datospersonales.correo, datospersonales.imagen, carreras.carrera FROM datospersonales INNER JOIN carreras on carreras.id = datospersonales.carrera where iduser = :iduser", iduser=iduser)
+
+    if len(datosusuarios) == 0:
+        datosusuarios = None
+
+    return render_template("datosusuarios.html", datosusuarios=datosusuarios)
