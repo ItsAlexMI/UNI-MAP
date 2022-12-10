@@ -24,4 +24,3 @@ Pero ahora como generarían ingresos? tenemos pensado dos fuentes de ingresos:
 
 # --¿Como los estudiantes accederán a la aplicación?--
 Plan marketing y el acceso al apk de aplicación móvil.
-
