@@ -23,4 +23,9 @@ Pero ahora como generarían ingresos? tenemos pensado dos fuentes de ingresos:
 2.- los cafetines y negocios de la universidad tendrían un acceso especial donde pueden anunciarse en el la web, mantendrían actualizado el menú o los servicios que ofrecen, podrían renovar la galería de imágenes de su sitio.
 
 # --¿Como los estudiantes accederán a la aplicación?--
+<<<<<<< HEAD
 Plan marketing y el acceso al apk de aplicación móvil.
+=======
+Plan marketing y el acceso al apk de aplicación móvil.
+
+>>>>>>> dc72ff2a0501ea4dad1e182f8a047143e07fec66
