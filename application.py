@@ -214,3 +214,7 @@ def actualizar(idsitio, idcomentario):
             "UPDATE comentarios SET comentario = :comentario where id = :id", comentario=comentario, id=id)
 
     return redirect(f"/sitio/{idsitio}")
+@app.route("/acercade")
+def street():
+
+    return render_template("acercade.html")
